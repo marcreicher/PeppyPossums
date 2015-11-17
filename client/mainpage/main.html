@@ -1,0 +1,106 @@
+<div>
+    <div class="bg"></div>
+    <div class="jumbotron">
+      <h2>Welcome to Wiggler</h2>
+    <p class="lead">
+    </div>
+
+
+
+
+  <div class="container">
+
+
+    <div class="col-lg-8  text-center">
+      <form>
+        <div>
+          <input type="text" class="form-control input-lg text-center" placeholder="type in a zipcode" ng-model="zipCode">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary btn-lg" ng-click="sendZipCode(zipCode)"> Get me to a roof </button>
+      </form>
+      <br>
+    </div>
+    <br>
+  </div>
+
+<div ng-controller="MapController" class="col-lg-6">
+  <ui-gmap-google-map center="map.center" zoom="map.zoom">
+    <ui-gmap-marker coords="map.center" idkey="1"></ui-gmap-marker>
+  </ui-gmap-google-map>
+</div>
+
+  <uib-accordion close-others="true" class="col-sm-5 col-md-6">
+    <!-- <uib-accordion-group heading="Static Header, initially expanded" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled" > -->
+
+    <!-- </uib-accordion-group> -->
+    <uib-accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+
+    </uib-accordion-group>
+    <uib-accordion-group ng-repeat="bar in list track by $index" class="col-lg-6 col-md-4 text-center">
+
+     <uib-accordion-heading>
+     {{ bar.name }}
+     <img src='{{ bar.rating_img_url}}'>
+     </uib-accordion-heading>
+     <div>
+     <img src="{{bar.image_url}}" >
+    </div class="col-md-4">
+      <p>{{bar.location.address[0]}} <br>
+      {{bar.location.city}},
+      {{bar.location.state_code}}
+      {{bar.location.postal_code}} <br>
+      {{bar.display_phone}}
+      </p>
+
+      <button type="button" class="btn btn-default btn-sm" ng-click="addItem()" ng-controller="MapController">Add Item</button>
+      <div ng-repeat="item in items"> hey{{item}}</div>
+
+    </uib-accordion-group>
+<!--     <uib-accordion-group heading="Custom template" template-url="group-template.html">
+      Hello
+    </uib-accordion-group> -->
+   <!--  <uib-accordion-group heading="Delete account" panel-class="panel-danger">
+      <p>Please, to delete your account, click the button below</p>
+      <button class="btn btn-danger">Delete</button>
+    </uib-accordion-group> -->
+<!--     <uib-accordion-group is-open="status.open">
+      <uib-accordion-heading>
+        I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+      </uib-accordion-heading>
+      This is just some content to illustrate fancy headings.
+    </uib-accordion-group> -->
+  </uib-accordion>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <script type="text/javascript">
+     console.log('did we make it inside the script')
+
+      var jumboHeight = $('.jumbotron').outerHeight();
+
+      function parallax(){
+          var scrolled = $(window).scrollTop();
+          $('.bg').css('height', (jumboHeight-scrolled) + 'px');
+      }
+
+      $(window).scroll(function(e){
+          parallax();});
+      </script>

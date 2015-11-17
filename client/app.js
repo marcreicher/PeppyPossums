@@ -1,18 +1,18 @@
 angular.module('WGLR', ['ui.bootstrap', 'ngAnimate', 'uiGmapgoogle-maps', 'ui.router'])
 
 
-.config(function(uiGmapGoogleMapApiProvider , $stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/main');
+.config(function(uiGmapGoogleMapApiProvider , $urlRouterProvider, $stateProvider) {
+  // $urlRouterProvider.otherwise('/main');
   $stateProvider
     .state('main', {
-      url: '/',
+      url: '/main',
       controller: 'appController',
-      templateUrl: 'homepage.html'
+      templateUrl: 'client/mainpage/main.html'
     })
-    // .state('signup', {
-    //   url: '/signup',
-    //   templateUrl: 'xxxx.html'
-    // })
+    .state('signup', {
+      url: '/signup',
+      templateUrl: 'client/register/register.html'
+    })
 
   uiGmapGoogleMapApiProvider.configure({
     key: 'AIzaSyCyhGXFgrHmsvQkerWmO20WwZsvrc9xfjs',
